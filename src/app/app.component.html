@@ -1,0 +1,14 @@
+ <div class="container"> 
+  <h1>Using a Form Array For Hierachical Structure</h1>
+  <form [formGroup]="treeForm" novalidate (ngSubmit)="save(treeForm.value)">
+    <div formArrayName="treeItems">
+      <div *ngFor="let item of treeForm.controls.treeItems.controls; let i = index">
+        <div [formGroupName]="i">
+          <app-treeitem [formGroup]="treeForm.controls.treeItems.controls[i]" [depth]="0"></app-treeitem>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+  <pre>{{ model | json }} </pre>
+ </div> 

@@ -1,0 +1,12 @@
+<div [formGroup]="formGroup">
+    <div class="row">
+        <div class="col-md-4 offset-md-{{depth}}"><input placeholder="Name" formControlName='name'></div>
+    </div>
+    <div formArrayName="children">
+        <div *ngFor="let item of formGroup.controls.children.controls; let i=index">
+            <div [formGroupName]="i">
+                <app-treeitem [formGroup]="formGroup.controls.children.controls[i]" [depth]="depth+1"></app-treeitem>
+            </div>
+        </div>
+    </div>
+</div>
